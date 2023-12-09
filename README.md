@@ -2,8 +2,8 @@
 
 
 ### Day1:
-Youtube live link:
+Youtube live link: https://youtube.com/live/ywevZDKK7gc
 
 
 ### Day2:
-Youtube live link: https://www.youtube.com/watch?v=Z3d7KwYX8qk
+Youtube live link: https://youtube.com/live/yq6YSCPw5dw
