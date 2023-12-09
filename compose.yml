@@ -2,7 +2,8 @@ version: "3"
 
 services:
   php:
-    image: php:8.2-fpm
+    build: "./php"
+    container_name: d-php
     ports:
       - 9000:9000
     networks:
@@ -11,12 +12,37 @@ services:
       - .:/src
   nginx:
     build: "./nginx"
+    container_name: d-nginx
     ports:
       - 8000:80
     volumes:
       - .:/src
     networks:
       - bitfumes
+  mysql:
+    image: mysql:8.0
+    container_name: d-mysql
+    ports:
+      - 3307:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: bitfumes
+      MYSQL_PASSWORD: password
+    networks:
+      - bitfumes
+    volumes:
+      - mysqlvol:/var/lib/mysql
+  redis:
+    image: redis:alpine
+    container_name: d-redis
+    ports:
+      - 6379:6379
+    networks:
+      - bitfumes
 networks:
   bitfumes:
     driver: bridge
+
+volumes:
+  mysqlvol:
+    driver: local
