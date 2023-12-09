@@ -1,0 +1,22 @@
+version: "3"
+
+services:
+  php:
+    image: php:8.2-fpm
+    ports:
+      - 9000:9000
+    networks:
+      - bitfumes
+    volumes:
+      - .:/src
+  nginx:
+    build: "./nginx"
+    ports:
+      - 8000:80
+    volumes:
+      - .:/src
+    networks:
+      - bitfumes
+networks:
+  bitfumes:
+    driver: bridge

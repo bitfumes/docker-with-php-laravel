@@ -1,0 +1,24 @@
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+
+        root /src/day2/public;
+
+        # Add index.php to the list if you are using PHP
+        index index.html index.php index.htm index.nginx-debian.html;
+
+        server_name _;
+
+        location / {
+                # First attempt to serve request as file, then
+                # as directory, then fall back to displaying a 404.
+                try_files $uri $uri/ /index.php?$query_string;
+        }
+
+        # pass PHP scripts to FastCGI server
+        #
+        location ~ \.php$ {
+                include snippets/fastcgi-php.conf;
+                fastcgi_pass docker-learn-php-1:9000;
+        }
+}
